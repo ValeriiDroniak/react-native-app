@@ -18,8 +18,7 @@ export const RegistrationForm = () => {
   const handleSubmit = () => {
     console.log('data', values);
     Keyboard.dismiss();
-    // fetch()
-    // setValues(initialValues)
+    setValues(initialValues);
   };
 
   return (

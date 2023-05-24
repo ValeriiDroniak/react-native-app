@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, Pressable, StyleSheet, View, Button } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -31,10 +31,7 @@ export const AddAvatar = () => {
     <View style={styles.container}
     >
       <View style={styles.imgWrapper}>
-        <Image
-          style={styles.img}
-          source={{ uri: imageUri }}
-        />
+        <Image style={styles.img} source={{ uri: imageUri }} />
       </View>
       <Pressable
         onPress={handlePress}
