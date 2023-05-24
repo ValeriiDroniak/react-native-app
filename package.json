@@ -12,12 +12,11 @@
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^18.0.4",
     "expo": "~48.0.15",
+    "expo-image-picker": "^14.1.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.71.8",
-    "react-native-image-crop-picker": "^0.39.0",
-    "react-native-image-picker": "^5.3.1",
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {

@@ -1,24 +1,31 @@
-import { useEffect, useState } from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Image, Pressable, StyleSheet, View, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-
-import testAvatar from '../images/man.png'
+import * as ImagePicker from 'expo-image-picker';
 
 export const AddAvatar = () => {
-  const [image, setImage] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
 
-  useEffect(() => {
-    setImage(testAvatar);
-  }, [])
-
-  const handlePress = () => {
-    if (!image) {
-      setImage(testAvatar);
+  const handlePress = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      console.log('Permission not granted');
       return;
     }
 
-    setImage(null)
-  }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const { assets } = result;
+      const selectedImageUri = assets[0]?.uri;
+      setImageUri(selectedImageUri);
+    }
+  };
 
   return (
     <View style={styles.container}
@@ -26,20 +33,20 @@ export const AddAvatar = () => {
       <View style={styles.imgWrapper}>
         <Image
           style={styles.img}
-          source={image}
+          source={{ uri: imageUri }}
         />
       </View>
       <Pressable
         onPress={handlePress}
         style={[
           styles.btn,
-          { borderColor: image ? '#e8e8e8' : '#ff6c00' }
+          { borderColor: imageUri ? '#e8e8e8' : '#ff6c00' }
         ]}
       >
         <AntDesign
-          name={image ? 'close' : 'plus'}
+          name={imageUri ? 'close' : 'plus'}
           size={18}
-          color={image ? '#bdbdbd' : '#ff6c00'}
+          color={imageUri ? '#bdbdbd' : '#ff6c00'}
         />
       </Pressable>
     </View>
