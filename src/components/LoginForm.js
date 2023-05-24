@@ -5,14 +5,13 @@ import { Button } from "./Button";
 import { Field } from "./Field";
 
 const dataInput = [
-  { title: 'name', placeholder: 'Логин' },
   { title: 'email', placeholder: 'Адрес электронной почты' },
   { title: 'password', placeholder: 'Пароль' }
 ];
 
-const initialValues = { name: '', email: '', password: '' };
+const initialValues = { email: '', password: '' };
 
-export const RegistrationForm = () => {
+export const LoginForm = () => {
   const [values, setValues] = useState(initialValues);
 
   const handleSubmit = () => {
@@ -35,7 +34,7 @@ export const RegistrationForm = () => {
       )}
 
       <Button
-        title="Зарегистрироваться"
+        title="Войти"
         handleSubmit={handleSubmit}
       />
     </View>

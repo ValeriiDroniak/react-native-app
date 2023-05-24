@@ -1,10 +1,18 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
 import { AddAvatar } from '../components/AddAvatar';
 import { RegistrationForm } from '../components/RegistrationForm'
 
-export const RegistrationScreen = () => {
+export const RegistrationScreen = ({ onChangeLogin }) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={[
+      styles.wrapper,
+      {
+        position: 'relative',
+        paddingTop: 70,
+        paddingBottom: 45
+      }
+    ]}>
       <AddAvatar />
 
       <View style={styles.wrapperTitle}>
@@ -14,8 +22,8 @@ export const RegistrationScreen = () => {
       <RegistrationForm />
 
       <View style={styles.wraperText}>
-        <Text style={styles.linkText}>Уже есть аккаунт?</Text>
-        <Pressable>
+        <Text style={styles.linkText}>Уже есть аккаунт? </Text>
+        <Pressable onPress={() => onChangeLogin(true)}>
           <Text style={styles.linkText} >Войти</Text>
         </Pressable>
       </View>
@@ -25,11 +33,8 @@ export const RegistrationScreen = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
     backgroundColor: '#ffffff',
     width: '100%',
-    paddingTop: 70,
-    paddingBottom: 45,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25
   },
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 32
+    paddingVertical: 32
   },
   title: {
     color: '#212121',
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
   wraperText: {
     width: '100%',
     flexDirection: 'row',
-    gap: 2,
+    // gap: 2,
     justifyContent: 'center',
     backgroundColor: '#ffffff',
   },
